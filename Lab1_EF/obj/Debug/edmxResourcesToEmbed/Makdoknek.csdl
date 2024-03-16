@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MakdoknekModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Booking">
+    <Key>
+      <PropertyRef Name="ID_booking" />
+    </Key>
+    <Property Name="ID_booking" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Booking_date" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Client_ID" Type="Int32" Nullable="false" />
+    <Property Name="Dish_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Client" Relationship="Self.FK__Booking__Client___4F7CD00D" FromRole="Booking" ToRole="Client" />
+    <NavigationProperty Name="Menu" Relationship="Self.FK__Booking__Dish_ID__5070F446" FromRole="Booking" ToRole="Menu" />
+  </EntityType>
+  <EntityType Name="Client">
+    <Key>
+      <PropertyRef Name="ID_Client" />
+    </Key>
+    <Property Name="ID_Client" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Client_sName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Client_fName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Client_mName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Client_phone" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Booking" Relationship="Self.FK__Booking__Client___4F7CD00D" FromRole="Client" ToRole="Booking" />
+  </EntityType>
+  <EntityType Name="Menu">
+    <Key>
+      <PropertyRef Name="ID_Dish" />
+    </Key>
+    <Property Name="ID_Dish" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Dish_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Dish_price" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Booking" Relationship="Self.FK__Booking__Dish_ID__5070F446" FromRole="Menu" ToRole="Booking" />
+  </EntityType>
+  <Association Name="FK__Booking__Client___4F7CD00D">
+    <End Role="Client" Type="Self.Client" Multiplicity="1" />
+    <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="ID_Client" />
+      </Principal>
+      <Dependent Role="Booking">
+        <PropertyRef Name="Client_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Booking__Dish_ID__5070F446">
+    <End Role="Menu" Type="Self.Menu" Multiplicity="1" />
+    <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Menu">
+        <PropertyRef Name="ID_Dish" />
+      </Principal>
+      <Dependent Role="Booking">
+        <PropertyRef Name="Dish_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MakdoknekEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Booking" EntityType="Self.Booking" />
+    <EntitySet Name="Client" EntityType="Self.Client" />
+    <EntitySet Name="Menu" EntityType="Self.Menu" />
+    <AssociationSet Name="FK__Booking__Client___4F7CD00D" Association="Self.FK__Booking__Client___4F7CD00D">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="Booking" EntitySet="Booking" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Booking__Dish_ID__5070F446" Association="Self.FK__Booking__Dish_ID__5070F446">
+      <End Role="Menu" EntitySet="Menu" />
+      <End Role="Booking" EntitySet="Booking" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище MakdoknekModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Booking">
+    <Key>
+      <PropertyRef Name="ID_booking" />
+    </Key>
+    <Property Name="ID_booking" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Booking_date" Type="varchar" MaxLength="10" />
+    <Property Name="Client_ID" Type="int" Nullable="false" />
+    <Property Name="Dish_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Client">
+    <Key>
+      <PropertyRef Name="ID_Client" />
+    </Key>
+    <Property Name="ID_Client" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Client_sName" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Client_fName" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Client_mName" Type="varchar" MaxLength="20" />
+    <Property Name="Client_phone" Type="varchar" MaxLength="11" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Menu">
+    <Key>
+      <PropertyRef Name="ID_Dish" />
+    </Key>
+    <Property Name="ID_Dish" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Dish_name" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Dish_price" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Booking__Client___4F7CD00D">
+    <End Role="Client" Type="Self.Client" Multiplicity="1" />
+    <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="ID_Client" />
+      </Principal>
+      <Dependent Role="Booking">
+        <PropertyRef Name="Client_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Booking__Dish_ID__5070F446">
+    <End Role="Menu" Type="Self.Menu" Multiplicity="1" />
+    <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Menu">
+        <PropertyRef Name="ID_Dish" />
+      </Principal>
+      <Dependent Role="Booking">
+        <PropertyRef Name="Dish_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище MakdoknekModelContainer">
+    <EntitySet Name="Booking" EntityType="Self.Booking" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Booking__Client___4F7CD00D" Association="Self.FK__Booking__Client___4F7CD00D">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="Booking" EntitySet="Booking" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Booking__Dish_ID__5070F446" Association="Self.FK__Booking__Dish_ID__5070F446">
+      <End Role="Menu" EntitySet="Menu" />
+      <End Role="Booking" EntitySet="Booking" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

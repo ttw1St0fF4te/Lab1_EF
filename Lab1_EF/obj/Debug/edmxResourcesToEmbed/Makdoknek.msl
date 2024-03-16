@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище MakdoknekModelContainer" CdmEntityContainer="MakdoknekEntities">
+    <EntitySetMapping Name="Booking">
+      <EntityTypeMapping TypeName="MakdoknekModel.Booking">
+        <MappingFragment StoreEntitySet="Booking">
+          <ScalarProperty Name="ID_booking" ColumnName="ID_booking" />
+          <ScalarProperty Name="Booking_date" ColumnName="Booking_date" />
+          <ScalarProperty Name="Client_ID" ColumnName="Client_ID" />
+          <ScalarProperty Name="Dish_ID" ColumnName="Dish_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Client">
+      <EntityTypeMapping TypeName="MakdoknekModel.Client">
+        <MappingFragment StoreEntitySet="Client">
+          <ScalarProperty Name="ID_Client" ColumnName="ID_Client" />
+          <ScalarProperty Name="Client_sName" ColumnName="Client_sName" />
+          <ScalarProperty Name="Client_fName" ColumnName="Client_fName" />
+          <ScalarProperty Name="Client_mName" ColumnName="Client_mName" />
+          <ScalarProperty Name="Client_phone" ColumnName="Client_phone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Menu">
+      <EntityTypeMapping TypeName="MakdoknekModel.Menu">
+        <MappingFragment StoreEntitySet="Menu">
+          <ScalarProperty Name="ID_Dish" ColumnName="ID_Dish" />
+          <ScalarProperty Name="Dish_name" ColumnName="Dish_name" />
+          <ScalarProperty Name="Dish_price" ColumnName="Dish_price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
